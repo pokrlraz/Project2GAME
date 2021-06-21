@@ -70,7 +70,7 @@ let monster = {
 };
 let bomb1 ={
     x:180,
-    y:180
+    y:300
 };
 let bomb2 ={
     x:680,
@@ -171,11 +171,14 @@ let update = function (modifier) {
         ++monstersCaught;       // keep track of our “score”
         reset();       // start a new cycle
     }
-    if (touchingBomb(hero)){
+   if (touchingBomb(hero)){
         alert("Bird is caught by lightning and died, GAME OVER")
-          
-    }
-
+        reset();
+        monstersCaught = 0
+        Object.keys(keysDown).forEach(key => {
+        delete keysDown[key]
+        })
+        }
     curXFrame = ++curXFrame % frameCount; 
     srcX = curXFrame * width;   	
     
